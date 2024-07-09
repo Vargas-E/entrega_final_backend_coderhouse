@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import { expect } from "chai";
-const requester = supertest("http://localhost:8080");
+const requester = supertest(process.env.BASE_URL);
 
 describe("testing app", () => {
   describe("Test products", () => {

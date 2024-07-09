@@ -57,7 +57,7 @@ const buildCartView = () => {
 buildCartView();
 
 const deleteProductFromCart = (cartId, prodId) => {
-  var url = `http://localhost:8080/api/cart/${cartId}/product/${prodId}`;
+  var url = process.env.BASE_URL + `api/cart/${cartId}/product/${prodId}`;
   fetch(url, {
     method: "DELETE",
     headers: {
@@ -82,7 +82,7 @@ const deleteProductFromCart = (cartId, prodId) => {
 };
 
 const finishPurchase = (cartId) => {
-  var url = `http://localhost:8080/api/cart/${cartId}/purchase`;
+  var url = process.env.BASE_URL + `api/cart/${cartId}/purchase`;
   fetch(url, {
     method: "GET",
     headers: {
@@ -97,7 +97,7 @@ const finishPurchase = (cartId) => {
     })
     .then((data) => {
       const ticket = data.ticket;
-      window.location.href = `http://localhost:8080/views/ticket?tId=${ticket._id}`;
+      window.location.href = process.env.BASE_URL + `views/ticket?tId=${ticket._id}`;
     })
     .catch((error) => {
       console.error("Error fetching data:", error);

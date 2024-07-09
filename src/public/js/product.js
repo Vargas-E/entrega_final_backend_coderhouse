@@ -25,7 +25,7 @@ increaseButton.addEventListener("click", () => {
 });
 
 function addProductToCart(prodId, quantity) {
-  var url = `http://localhost:8080/api/cart/${user.cart}/product/${prodId}`;
+  var url = process.env.BASE_URL + `api/cart/${user.cart}/product/${prodId}`;
   if (product && product.owner == user.email) {
     Swal.fire({
       title: "This product is owned by you.",

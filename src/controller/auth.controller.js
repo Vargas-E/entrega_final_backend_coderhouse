@@ -15,6 +15,7 @@ class AuthController {
     req.logger.info(
       `Request to login. Layer:${layer}, Router: ${router}, Date: ${new Date()}`
     );
+    console.log("req.user:", req.user);
     try {
       const userForToken = {
         first_name: req.user.first_name,
@@ -32,8 +33,9 @@ class AuthController {
         httpOnly: true,
       });
 
-      const userInDb = userRepository.findByEmail(email);
-      user.last_connection = new Date();
+      const userInDb = await userRepository.findByEmail(req.user.email);
+      console.log("userInDb:", userInDb);
+      userInDb.last_connection = new Date();
       await userInDb.save();
       if (userForToken.rol == "admin") {
         res.redirect("/views/realtime_products");
@@ -42,7 +44,7 @@ class AuthController {
       }
     } catch (error) {
       req.logger.error(
-        `Error while trying login. Layer:${layer}, Router: ${router}. Error: ${err}, Date: ${new Date()}`
+        `Error while trying login. Layer:${layer}, Router: ${router}. Error: ${error}, Date: ${new Date()}`
       );
       res.status(400).send({ error: "Error en el login" });
     }
@@ -72,7 +74,7 @@ class AuthController {
         httpOnly: true,
       });
 
-      const userInDb = userRepository.findByEmail(email);
+      const userInDb = await userRepository.findByEmail(email);
       user.last_connection = new Date();
       await userInDb.save();
 

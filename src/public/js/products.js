@@ -63,7 +63,7 @@ pageCounter.innerHTML = products.page;
 
 // requests
 function addProductToCart(prodId, quantity) {
-  var url = `http://localhost:8080/api/cart/${user.cart}/product/${prodId}`;
+  var url = process.env.BASE_URL + `api/cart/${user.cart}/product/${prodId}`;
   const product = products.docs.find(e => prodId == e._id);
   if (product && product.owner == user.email) {
     Swal.fire({
