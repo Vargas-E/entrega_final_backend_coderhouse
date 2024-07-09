@@ -68,6 +68,7 @@ app.use("/api/products", productsRouter);
 app.use("/api/cart", cartsRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/logs_test", logsRouter);
+app.use("/api/users", logsRouter);
 app.use("/views",   (req, res, next) => {
   req.httpServer = httpServer;
   next();

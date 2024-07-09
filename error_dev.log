@@ -40,3 +40,6 @@ error: Error while trying login. Layer:Controller, Router: Auth. Error: Referenc
 error: Error while trying login. Layer:Controller, Router: Auth. Error: TypeError: userInDb.save is not a function, Date: Mon Jul 08 2024 20:42:40 GMT-0300 (Argentina Standard Time)
 error: Error while trying login. Layer:Controller, Router: Auth. Error: TypeError: userInDb.save is not a function, Date: Mon Jul 08 2024 20:44:14 GMT-0300 (Argentina Standard Time)
 error: Error while trying login. Layer:Controller, Router: Auth. Error: TypeError: userInDb.save is not a function, Date: Mon Jul 08 2024 20:48:20 GMT-0300 (Argentina Standard Time)
+error: Error while trying login. Layer:Controller, Router: Auth. Error: TypeError: Cannot set properties of null (setting 'last_connection'), Date: Mon Jul 08 2024 22:29:14 GMT-0300 (Argentina Standard Time)
+error: Error while trying login. Layer:Controller, Router: Auth. Error: ReferenceError: user is not defined, Date: Mon Jul 08 2024 22:30:24 GMT-0300 (Argentina Standard Time)
+error: Error while rendering ticket page. Layer:Controller, Router: Views, Error: TypeError: users.map is not a function, Date: Mon Jul 08 2024 22:33:44 GMT-0300 (Argentina Standard Time)

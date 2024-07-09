@@ -33,10 +33,12 @@ class AuthController {
         httpOnly: true,
       });
 
-      const userInDb = await userRepository.findByEmail(req.user.email);
-      console.log("userInDb:", userInDb);
-      userInDb.last_connection = new Date();
-      await userInDb.save();
+      if (req.user.rol != "admin") {
+        const userInDb = await userRepository.findByEmail(req.user.email);
+        console.log("userInDb:", userInDb);
+        userInDb.last_connection = new Date();
+        await userInDb.save();
+      }
       if (userForToken.rol == "admin") {
         res.redirect("/views/realtime_products");
       } else {
@@ -205,17 +207,22 @@ class AuthController {
       if (!user) {
         return res.status(404).json({ message: "User Not Found" });
       }
-      const requiredDocs = ["Identificacion", "Comprobante de domicilio", "Comprobante de estado de cuenta"];
-      const userDocuments = user.documents.map(e => e.name);
-      const docsExists = requiredDocs.every(e => userDocuments.includes(e))
+      const requiredDocs = [
+        "Identificacion",
+        "Comprobante de domicilio",
+        "Comprobante de estado de cuenta",
+      ];
+      const userDocuments = user.documents.map((e) => e.name);
+      const docsExists = requiredDocs.every((e) => userDocuments.includes(e));
       if (docsExists) {
         const newRol = user.rol === "user" ? "premium" : "user";
         const updated = await UserModel.findByIdAndUpdate(uid, { rol: newRol });
         res.json(updated);
       } else {
-        res.status(400).send("User docs not found. Denied upgrade to premium user");
+        res
+          .status(400)
+          .send("User docs not found. Denied upgrade to premium user");
       }
-
     } catch (err) {
       req.logger.error(
         `Error while changing role. Layer:${layer}, Router: ${router}. Error: ${err}, Date: ${new Date()}`

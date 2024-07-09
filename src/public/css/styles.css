@@ -601,3 +601,23 @@ input[disabled] {
 .deleteHorizontalMargin {
     margin-left: 0;
 }
+
+/*users settings*/
+
+#usersSettingsContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1rem;
+    max-width: 1000px;
+    margin: auto;
+    gap: 1.5rem;
+}
+
+.usersTableContainer {
+    width: 100%;
+}
+
+.usersTable {
+    width: 100%;
+}

@@ -95,5 +95,7 @@ router.get("/password", viewsController.renderChangePassword);
 
 router.get("/confirmation_email_sent", viewsController.renderConfirmation);
 
+router.get("/users_settings", passportAuth, adminMiddleware, viewsController.renderUsersSettings)
+
 
 module.exports = router;

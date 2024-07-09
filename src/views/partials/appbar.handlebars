@@ -14,6 +14,7 @@
     {{#ifCondOr user.rol "admin" }}
       <div><a class="navButton {{#if active.realtime_products}}active{{/if}}" href="/views/realtime_products">EDIT PRODUCTS</a></div>
       <div><a class="navButton {{#if active.test}}active{{/if}}" href="/views/test">TEST</a></div>
+      <div><a class="navButton {{#if active.chat}}active{{/if}}" href="/views/users_settings">USERS SETTINGS</a></div>
     {{/ifCondOr}}
     {{#ifCondOr user.rol "premium"}}
       <div><a class="navButton {{#if active.products}}active{{/if}}" href="/views/products">PRODUCTS</a></div>

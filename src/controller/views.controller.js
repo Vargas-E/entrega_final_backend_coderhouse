@@ -10,8 +10,12 @@ const ticketsService = new TicketsService();
 const ChatService = require("../services/chat.services.js");
 const chatService = new ChatService();
 
+const UsersRepository = require("../repositories/users.repository.js");
+const usersRepository = new UsersRepository();
+
 const socket = require("socket.io");
 const UserDto = require("../dto/user.dto.js");
+const UserAdminDto = require("../dto/userAdmin.dto.js");
 
 const generateProducts = require("../utils/faker.js");
 
@@ -342,6 +346,23 @@ class ViewsController {
 
   async renderConfirmation(req, res) {
     res.render("confirmation_email_sent");
+  }
+
+  async renderUsersSettings(req, res) {
+    const user = req.user;
+    try {
+      const users = await usersRepository.getUsers();
+      const dtoUsers = users.map((e) => new UserAdminDto(e));
+      res.render("userssettings", {
+        user: req.user,
+        users: dtoUsers,
+        active: { usersSettings: true },
+      });
+    } catch (err) {
+      req.logger.error(
+        `Error while rendering ticket page. Layer:${layer}, Router: ${router}, Error: ${err}, Date: ${new Date()}`
+      );
+    }
   }
 }
 
