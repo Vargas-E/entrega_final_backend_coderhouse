@@ -74,6 +74,28 @@ class EmailManager {
       throw new Error("Error al enviar correo electrónico");
     }
   }
+
+  async sendDeletedUserMail(user) {
+    console.log("user in mail:", user);
+    try {
+      const mailOptions = {
+        from: "vargasivanezequiel@gmail.com",
+        to: user.email,
+        subject: "Tu usuario fue eliminado!!",
+        html: `
+                    <h2>Hola ${user.first_name},</h2>
+                    <p>Tu usuario fue eliminado de nuestra base de datos por inactividad.</p>
+                    <p>El periodo de inactividad es de 2 dias. Luego de esto nos guardamos el derecho de eliminar usuarios inactivos.</p>
+                    <p>Te invitamos a crearte un nuevo usuario!</p>
+                `,
+      };
+
+      await this.transporter.sendMail(mailOptions);
+    } catch (error) {
+      console.error("Error al enviar correo electrónico:", error);
+      throw new Error("Error al enviar correo electrónico");
+    }
+  }
 }
 
 module.exports = EmailManager;

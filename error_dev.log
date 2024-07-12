@@ -56,3 +56,6 @@ error: Error while rendering products page. Layer:Controller, Router: Views. Err
 error: Error while adding product from cart. Layer:Controller, Router: Cart. Error: Error: Error mongo (get cart): Cart not found, Date: Fri Jul 12 2024 00:51:01 GMT-0300 (Argentina Standard Time)
 error: Error while rendering products page. Layer:Controller, Router: Views. Error: Error: Error mongo (get cart): Cart not found, Date: Fri Jul 12 2024 00:51:03 GMT-0300 (Argentina Standard Time)
 error: Error while trying to register. Layer:Controller, Router: Auth. Error: ReferenceError: user is not defined, Date: Fri Jul 12 2024 00:56:53 GMT-0300 (Argentina Standard Time)
+error: Error while deleting user by id. Layer:Controller, Router: Users. Error: TypeError: usersService.getUserById is not a function, Date: Fri Jul 12 2024 01:32:50 GMT-0300 (Argentina Standard Time)
+error: Error while deleting user by id. Layer:Controller, Router: Users. Error: Error: Error al enviar correo electrónico, Date: Fri Jul 12 2024 01:34:26 GMT-0300 (Argentina Standard Time)
+error: Error while deleting user by id. Layer:Controller, Router: Users. Error: Error: Error al enviar correo electrónico, Date: Fri Jul 12 2024 01:35:25 GMT-0300 (Argentina Standard Time)

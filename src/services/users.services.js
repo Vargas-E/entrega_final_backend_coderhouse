@@ -6,9 +6,9 @@ const emailManager = new EmailManager();
 
 class UsersService {
   async deleteInactiveUsers() {
-    const twoDaysAgo = new Date(today);
-    twoDaysAgo.setDate(today.getDate() - 2);
-    const inactiveUsers = usersRepository.findInactiveUsers();
+    const twoDaysAgo = new Date();
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+    const inactiveUsers = usersRepository.findInactiveUsers(twoDaysAgo);
     for (let inactiveUser of inactiveUsers) {
       await usersRepository.deleteUserById(inactiveUser);
       await emailManager.sendDeletedUserMail(inactiveUser);

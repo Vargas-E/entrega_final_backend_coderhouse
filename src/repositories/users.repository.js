@@ -32,6 +32,10 @@ class UserRepository {
       throw err;
     }
   }
+
+  async findInactiveUsers(dateLimit) {
+    return await UserModel.find({ last_connection: { $lt: dateLimit } })
+  }
 }
 
 module.exports = UserRepository;

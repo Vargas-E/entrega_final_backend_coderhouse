@@ -7,6 +7,9 @@ const usersRepository = new UsersRepository();
 const { EErrors } = require("../utils/errors/enums.js");
 const CustomError = require("../utils/errors/custom-error.js");
 
+const EmailManager = require("../helpers/email.js");
+const emailManager = new EmailManager();
+
 const mongoose = require("mongoose");
 
 function isValidObjectId(id) {
@@ -77,7 +80,9 @@ class UsersController {
           code: EErrors.MISSING_VALUE,
         });
       } else {
-        const user = await usersRepository.deleteUserById(uid);
+        const user = await usersRepository.findById(uid);
+        await usersRepository.deleteUserById(uid);
+        await emailManager.sendDeletedUserMail(user);
         res.status(200).json({ message: `User with id ${uid} deleted` });
       }
     } catch (err) {
