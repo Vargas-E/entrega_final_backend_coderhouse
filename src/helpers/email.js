@@ -59,7 +59,7 @@ class EmailManager {
     try {
       const mailOptions = {
         from: "vargasivanezequiel@gmail.com",
-        to: email,
+        to: user.email,
         subject: "Uno de tus productos fue eliminado!",
         html: `
                     <h1>Hola ${user.first_name},</h1>

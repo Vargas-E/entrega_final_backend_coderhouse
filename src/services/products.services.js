@@ -10,6 +10,10 @@ const CustomError = require("../utils/errors/custom-error.js");
 const EmailManager = require("../helpers/email.js");
 const emailManager = new EmailManager();
 
+const UsersRepository = require("../repositories/users.repository.js");
+const usersRepository = new UsersRepository();
+
+
 class ProductsService {
   async getProducts(queryObject) {
     const limit = queryObject.limit;
@@ -86,7 +90,7 @@ class ProductsService {
         code: EErrors.NOT_FOUND,
       });
     }
-    const user = await usersRepository.getUserByEmail(product.owner);
+    const user = await usersRepository.findByEmail(product.owner);
     if (user) {
       emailManager.sendDeletedProductEmail(user, product);
     }
