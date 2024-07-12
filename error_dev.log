@@ -43,3 +43,12 @@ error: Error while trying login. Layer:Controller, Router: Auth. Error: TypeErro
 error: Error while trying login. Layer:Controller, Router: Auth. Error: TypeError: Cannot set properties of null (setting 'last_connection'), Date: Mon Jul 08 2024 22:29:14 GMT-0300 (Argentina Standard Time)
 error: Error while trying login. Layer:Controller, Router: Auth. Error: ReferenceError: user is not defined, Date: Mon Jul 08 2024 22:30:24 GMT-0300 (Argentina Standard Time)
 error: Error while rendering ticket page. Layer:Controller, Router: Views, Error: TypeError: users.map is not a function, Date: Mon Jul 08 2024 22:33:44 GMT-0300 (Argentina Standard Time)
+fatal: fatal logger example
+error: error logger example
+fatal: fatal logger example
+error: error logger example
+fatal: fatal logger example
+error: error logger example
+error: Error while deleting user by id. Layer:Controller, Router: Users. Error: Delete user by id: Valid id Paramater needed as param, Date: Tue Jul 09 2024 02:00:16 GMT-0300 (Argentina Standard Time)
+error: Error while deleting user by id. Layer:Controller, Router: Users. Error: ReferenceError: pid is not defined, Date: Tue Jul 09 2024 02:01:02 GMT-0300 (Argentina Standard Time)
+error: Error while deleting user by id. Layer:Controller, Router: Users. Error: ReferenceError: ProductModel is not defined, Date: Tue Jul 09 2024 02:01:33 GMT-0300 (Argentina Standard Time)

@@ -7,6 +7,7 @@ const cartsRouter = require("./routes/carts.router");
 const authRouter = require("./routes/auth.router.js");
 const viewsRouter = require("./routes/views.router.js");
 const logsRouter = require("./routes/logs.router.js");
+const usersRouter = require("./routes/users.router.js");
 const helper = require("./helpers/helper.js");
 const initializePassport = require("./config/passport.config.js");
 const passport = require("passport");
@@ -68,7 +69,7 @@ app.use("/api/products", productsRouter);
 app.use("/api/cart", cartsRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/logs_test", logsRouter);
-app.use("/api/users", logsRouter);
+app.use("/api/users", usersRouter);
 app.use("/views",   (req, res, next) => {
   req.httpServer = httpServer;
   next();

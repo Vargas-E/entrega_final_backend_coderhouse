@@ -53,7 +53,7 @@ router.post("/requestPasswordReset", authController.requestPasswordReset);
 
 router.post("/reset-password", authController.resetPassword);
 
-router.put("/premium/:uid", authController.changeRolToPremium);
+router.put("/change_rol/:uid/:rol", authController.changeRol);
 
 router.post(
   "/:uid/documents",

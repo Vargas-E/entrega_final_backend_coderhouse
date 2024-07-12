@@ -7,6 +7,9 @@ const { generateInfoError } = require("../utils/errors/info.js");
 const { EErrors } = require("../utils/errors/enums.js");
 const CustomError = require("../utils/errors/custom-error.js");
 
+const EmailManager = require("../helpers/email.js");
+const emailManager = new EmailManager();
+
 class ProductsService {
   async getProducts(queryObject) {
     const limit = queryObject.limit;
@@ -73,6 +76,7 @@ class ProductsService {
   }
 
   async deleteProductById(id) {
+    const product = await productsRepository.getProductById(id);
     const response = await productsRepository.deleteProductById(id);
     if (!response) {
       throw CustomError.crearError({
@@ -81,6 +85,10 @@ class ProductsService {
         message: `Issue while trying to delete product with id ${id}`,
         code: EErrors.NOT_FOUND,
       });
+    }
+    const user = await usersRepository.getUserByEmail(product.owner);
+    if (user) {
+      emailManager.sendDeletedProductEmail(user, product);
     }
     return response;
   }

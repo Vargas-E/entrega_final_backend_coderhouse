@@ -200,28 +200,35 @@ class AuthController {
     }
   }
 
-  async changeRolToPremium(req, res) {
+  async changeRol(req, res) {
     try {
-      const { uid } = req.params;
+      const { uid, rol } = req.params;
       const user = await UserModel.findById(uid);
       if (!user) {
         return res.status(404).json({ message: "User Not Found" });
       }
-      const requiredDocs = [
-        "Identificacion",
-        "Comprobante de domicilio",
-        "Comprobante de estado de cuenta",
-      ];
-      const userDocuments = user.documents.map((e) => e.name);
-      const docsExists = requiredDocs.every((e) => userDocuments.includes(e));
-      if (docsExists) {
-        const newRol = user.rol === "user" ? "premium" : "user";
-        const updated = await UserModel.findByIdAndUpdate(uid, { rol: newRol });
-        res.json(updated);
+      if (rol == "premium") {
+        const requiredDocs = [
+          "Identificacion",
+          "Comprobante de domicilio",
+          "Comprobante de estado de cuenta",
+        ];
+        const userDocuments = user.documents.map((e) => e.name);
+        const docsExists = requiredDocs.every((e) => userDocuments.includes(e));
+        if (docsExists) {
+          // const newRol = user.rol === "user" ? "premium" : "user";
+          const updated = await UserModel.findByIdAndUpdate(uid, {
+            rol: rol,
+          });
+          res.json(updated);
+        } else {
+          res
+            .status(400)
+            .send("User docs not found. Denied upgrade to premium user");
+        }
       } else {
-        res
-          .status(400)
-          .send("User docs not found. Denied upgrade to premium user");
+        const updated = await UserModel.findByIdAndUpdate(uid, { rol: rol });
+        res.json(updated);
       }
     } catch (err) {
       req.logger.error(

@@ -9,8 +9,10 @@ const usersController = new UsersController();
 
 
 
-router.get("/", usersController.getUsers());
-router.get("/:uid", usersController.getUserById());
+router.get("/", usersController.getUsers);
+router.get("/:uid", usersController.getUserById);
 
-router.delete("/:uid", usersController.deleteUserById());
-router.delete("/:uid", usersController.deleteInactiveUsers());
+router.delete("/:uid", usersController.deleteUserById);
+router.delete("/", usersController.deleteInactiveUsers);
+
+module.exports = router;

@@ -61,12 +61,12 @@ class UsersController {
   }
 
   async deleteUserById(req, res) {
-    const { pid } = req.params;
+    const { uid } = req.params;
     try {
       req.logger.info(
         `Request to delete user by id. Layer:${layer}, Router: ${router}, Date: ${new Date()}`
       );
-      if (!isValidObjectId(pid)) {
+      if (!isValidObjectId(uid)) {
         req.logger.warn(
           `Invalid user. Layer:${layer}, Router: ${router}, Date: ${new Date()}`
         );
@@ -77,8 +77,8 @@ class UsersController {
           code: EErrors.MISSING_VALUE,
         });
       } else {
-        const user = await usersRepository.deleteUserById(pid);
-        res.status(200).json({ message: `User with id ${pid} deleted` });
+        const user = await usersRepository.deleteUserById(uid);
+        res.status(200).json({ message: `User with id ${uid} deleted` });
       }
     } catch (err) {
       req.logger.error(
@@ -89,7 +89,6 @@ class UsersController {
   }
 
   async deleteInactiveUsers(req, res) {
-    const { pid } = req.params;
     try {
       req.logger.info(
         `Request to delete users with last activity older than 2 days. Layer:${layer}, Router: ${router}, Date: ${new Date()}`

@@ -355,8 +355,9 @@ class ViewsController {
       const dtoUsers = users.map((e) => new UserAdminDto(e));
       res.render("userssettings", {
         user: req.user,
-        users: dtoUsers,
+        // users: dtoUsers,
         active: { usersSettings: true },
+        base_url: process.env.BASE_URL.toString(),
       });
     } catch (err) {
       req.logger.error(

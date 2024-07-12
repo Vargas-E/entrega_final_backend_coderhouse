@@ -27,7 +27,7 @@ class UserRepository {
 
   async deleteUserById(id) {
     try {
-      await ProductModel.findByIdAndDelete(id);
+      await UserModel.findByIdAndDelete(id);
     } catch (err) {
       throw err;
     }
