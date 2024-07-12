@@ -51,7 +51,7 @@ function passportAuth(req, res, next) {
 router.get("/",
   passportAuth,
   userMiddleware,
-  viewsController.renderProduct
+  viewsController.renderProducts
 );
 
 router.get(
