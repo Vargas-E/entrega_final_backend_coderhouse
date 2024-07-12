@@ -77,13 +77,13 @@ class AuthController {
       });
 
       const userInDb = await userRepository.findByEmail(email);
-      user.last_connection = new Date();
+      userInDb.last_connection = new Date();
       await userInDb.save();
 
       res.redirect("/views/products");
     } catch (error) {
       req.logger.error(
-        `Error while trying to register. Layer:${layer}, Router: ${router}. Error: ${err}, Date: ${new Date()}`
+        `Error while trying to register. Layer:${layer}, Router: ${router}. Error: ${error}, Date: ${new Date()}`
       );
       res.status(500).send({ error: "Error al guardar el usuario nuevo" });
     }

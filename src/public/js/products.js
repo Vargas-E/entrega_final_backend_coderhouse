@@ -9,8 +9,8 @@ const pageCounter = document.getElementById("pageCounter");
 products.docs.forEach((product) => {
   let quantity = 1;
   const card = document.createElement("div");
-  card.classList.add("productCard");
-  card.innerHTML = `<a class="productLink"><div class="productImage" ></div></a><div class="textAndButtonContainer"><div>${product.title}</div><div>$${product.price}</div><div class="quantityContainer"><button id="${product.code}Decrease" class="arrowButton decrease"><</button><div id="${product.code}Counter" class="quantityCounter">${quantity}</div><button id="${product.code}Increase"class="arrowButton increase">></button></div><button class="button fixMargin newButton add"> ADD TO CART </button></div>`;
+  card.classList.add("productCardMock");
+  card.innerHTML = `<a class="productLink"><div class="productImageContainerMock"><img class="productImageMock"src=${product.img} alt="product_image" border="0"></div></a><div class="textAndButtonContainer"><div>${product.title}</div><div>$${product.price}</div><div class="quantityContainer"><button id="${product.code}Decrease" class="arrowButton decrease"><</button><div id="${product.code}Counter" class="quantityCounter">${quantity}</div><button id="${product.code}Increase"class="arrowButton increase">></button></div><button class="button fixMargin newButton add"> ADD TO CART </button></div>`;
   productsCardsContainer.appendChild(card);
   const addButton = card.querySelector(".add");
   const decreaseButton = card.querySelector(".decrease");
@@ -63,7 +63,7 @@ pageCounter.innerHTML = products.page;
 
 // requests
 function addProductToCart(prodId, quantity) {
-  var url = process.env.BASE_URL + `api/cart/${user.cart}/product/${prodId}`;
+  var url = BASE_URL + `api/cart/${user.cart}/product/${prodId}`;
   const product = products.docs.find(e => prodId == e._id);
   if (product && product.owner == user.email) {
     Swal.fire({

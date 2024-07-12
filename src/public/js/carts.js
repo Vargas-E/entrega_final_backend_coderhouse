@@ -17,7 +17,7 @@ const buildCartView = () => {
           <div>Quantity: ${product.quantity}</div>
           <div>Total of product: ${product.quantity * productData.price}</div>
           </div>
-          <div class="cartCardImageContainer"></div>`;
+          <div class="cartCardImageContainer"><img class="cartCardImage" src=${productData.img} alt="cart_product_image"/></div>`;
       const icon = document.createElement("button");
       icon.classList.add("deleteButtonCart");
       icon.innerHTML = "DEL";
@@ -57,7 +57,7 @@ const buildCartView = () => {
 buildCartView();
 
 const deleteProductFromCart = (cartId, prodId) => {
-  var url = process.env.BASE_URL + `api/cart/${cartId}/product/${prodId}`;
+  var url = BASE_URL + `api/cart/${cartId}/product/${prodId}`;
   fetch(url, {
     method: "DELETE",
     headers: {
@@ -82,7 +82,7 @@ const deleteProductFromCart = (cartId, prodId) => {
 };
 
 const finishPurchase = (cartId) => {
-  var url = process.env.BASE_URL + `api/cart/${cartId}/purchase`;
+  var url = BASE_URL + `api/cart/${cartId}/purchase`;
   fetch(url, {
     method: "GET",
     headers: {
@@ -97,7 +97,7 @@ const finishPurchase = (cartId) => {
     })
     .then((data) => {
       const ticket = data.ticket;
-      window.location.href = process.env.BASE_URL + `views/ticket?tId=${ticket._id}`;
+      window.location.href = BASE_URL + `views/ticket?tId=${ticket._id}`;
     })
     .catch((error) => {
       console.error("Error fetching data:", error);

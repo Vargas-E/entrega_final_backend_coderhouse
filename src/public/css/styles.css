@@ -193,7 +193,7 @@ input[disabled] {
     width: 100%;
     color: white;
     border-radius: 15px;
-    min-height: 200px;
+    height: 200px;
 
 }
 
@@ -207,10 +207,19 @@ input[disabled] {
 }
 
 .cartCardImageContainer {
-    background-color: white;
     width: 40%;
+    height: 100%;
     border-radius: 0 15px 15px 0;
 }
+
+.cartCardImage {
+    border-radius: 0 15px 15px 0 ;
+    background-color: aliceblue;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
 
 .cartTotal {
     color: white;

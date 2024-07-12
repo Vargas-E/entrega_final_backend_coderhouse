@@ -1,7 +1,9 @@
 {{> appbar}}
 <div id="individualProductContainer">
   <div class="individualProductCard">
-    <div class="individualProductImageContainer"></div>
+    <div class="individualProductImageContainer">
+      <img class="productImageMock" src={{product.img}} src="product_image"/>
+    </div>
 
     <div class="individualProductTextContainer">
       <div class="profileText">
@@ -38,5 +40,7 @@
 <script>
   let product = {{{jsonStringify product}}};
   let user = {{{jsonStringify user}}};
+  let BASE_URL = {{{jsonStringify base_url}}}
+
 </script>
 <script src="js/product.js"></script>

@@ -42,6 +42,7 @@ class ViewsController {
         cart: JSON.stringify(newCart),
         active: { cart: true },
         user: dtoUser,
+        base_url: process.env.BASE_URL.toString(),
       });
     } catch (err) {
       req.logger.error(
@@ -69,6 +70,7 @@ class ViewsController {
         products: products,
         active: { products: true },
         user: dtoUser,
+        base_url: process.env.BASE_URL.toString(),
       });
     } catch (err) {
       req.logger.error(
@@ -97,6 +99,7 @@ class ViewsController {
       res.render("product", {
         product: product,
         user: dtoUser,
+        base_url: process.env.BASE_URL.toString(),
       });
     } catch (err) {
       req.logger.error(
