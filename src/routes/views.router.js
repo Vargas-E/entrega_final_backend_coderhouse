@@ -48,6 +48,12 @@ function passportAuth(req, res, next) {
 }
 
 // Routes
+router.get("/",
+  passportAuth,
+  userMiddleware,
+  viewsController.renderProduct
+);
+
 router.get(
   "/cart",
   passportAuth,
@@ -68,6 +74,9 @@ router.get(
   userMiddleware,
   viewsController.renderProduct
 );
+
+
+
 
 router.get("/login", authenticateJWT, viewsController.renderLogin);
 

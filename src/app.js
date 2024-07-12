@@ -65,6 +65,10 @@ const httpServer = app.listen(PORT, () => {
 
 
 // Routes
+app.use("/",   (req, res, next) => {
+  req.httpServer = httpServer;
+  next();
+},viewsRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/cart", cartsRouter);
 app.use("/api/auth", authRouter);
